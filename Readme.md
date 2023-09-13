@@ -15,7 +15,7 @@
 * CI 自动构建结束后，pull 镜像
 
 ```shell
-docker pull registry.cn-shenzhen.aliyuncs.com/$image_name/app
+docker pull registry.cn-shenzhen.aliyuncs.com/auto_image/linux_rk3399_dev
 ```
 
 

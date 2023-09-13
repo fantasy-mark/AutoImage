@@ -1,10 +1,12 @@
 # linux_rk3399_dev
-FROM python:3.9.0
+FROM ubuntu:latest
 
-RUN pip install jupyterlab
+WORKDIR /project
 
-WORKDIR /jupyter
+RUN apt-get install build-essential pkg-config zlib1g-dev libglib2.0-0 libglib2.0-dev  libsdl1.2-dev libpixman-1-dev libfdt-dev libssl-dev autoconf automake libtool librbd-dev libaio-dev flex bison -y
+RUN apt-get install gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf 
+RUN apt-get install qemu-system
 
 EXPOSE 8888
 
-CMD ["bash", "-c", "jupyter lab --notebook-dir=/jupyter --ip 0.0.0.0 --no-browser --allow-root"]
+CMD ["bash"]
