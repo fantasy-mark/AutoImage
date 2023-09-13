@@ -13,7 +13,10 @@ jobs:
     - name: Auto Build Docker image
       run: | 
         docker version
+        # 登录阿里云镜像仓库
         docker login --username=${{ secrets.DOCKER_USERNAME }} --password=${{ secrets.DOCKER_PASSWORD }} registry.cn-shenzhen.aliyuncs.com
+         
+        # 使用正则表达式提取首行注释符后单词作为镜像名
         first_line=$(head -n 1 Dockerfile)
         pattern="# ([^ ]+)"
         if [[ $first_line =~ $pattern ]]; then
@@ -21,5 +24,7 @@ jobs:
         else
             image_name="undefine_image_name"
         fi
+        
+        # 使用Dockerfile构建镜像,推送镜像到镜像仓库 - 对应 https://cr.console.aliyun.com/cn-shenzhen/instance/repositories
         docker build . --file Dockerfile --tag registry.cn-shenzhen.aliyuncs.com/$image_name/app
         docker push registry.cn-shenzhen.aliyuncs.com/$image_name/app

@@ -1,6 +1,6 @@
 ### 设置
 
-[github secret](https://github.com/fantasy-mark/AutoImage/settings/secrets/actions) 设置 `DOCKER_USERNAME` \ `DOCKER_PASSWORD` variables
+[github secret](https://github.com/fantasy-mark/AutoImage/settings/secrets/actions) 设置 `DOCKER_USERNAME` \ `DOCKER_PASSWORD` secrets 
 
 ### 使用
 
