@@ -19,4 +19,3 @@ docker pull registry.cn-shenzhen.aliyuncs.com/$image_name/app
 ```
 
 
-
