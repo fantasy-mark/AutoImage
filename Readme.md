@@ -1,6 +1,10 @@
-### 设置
+### 设置github
 
 [github secret](https://github.com/fantasy-mark/AutoImage/settings/secrets/actions) 设置 `DOCKER_USERNAME` \ `DOCKER_PASSWORD` secrets 
+
+### 设置docker repo
+
+设置[仓库命名](https://cr.console.aliyun.com/cn-hangzhou/instance/namespaces) 为 `auto_image` - 与 `build.yml` 对应
 
 ### 使用
 

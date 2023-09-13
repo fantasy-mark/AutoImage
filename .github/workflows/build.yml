@@ -24,6 +24,6 @@ jobs:
         fi
         
         # 使用Dockerfile构建镜像,推送镜像到镜像仓库 - 对应 https://cr.console.aliyun.com/cn-shenzhen/instance/repositories
-        docker build . --file Dockerfile --tag mark/$image_name:latest
+        docker build . --file Dockerfile --tag auto_image/$image_name:latest
         docker login --username=${{ secrets.DOCKER_USERNAME }} --password=${{ secrets.DOCKER_PASSWORD }} registry.cn-shenzhen.aliyuncs.com
-        docker push mark/$image_name:latest
+        docker push auto_image/$image_name:latest
