@@ -1,7 +1,7 @@
-# sqa_ai
+# ai_sqa_serve
 FROM python:3.9.0
 
-RUN pip install click tqdm cryptography peewee Flask xlwt xlrd gensim numpy flask-cors
+RUN pip install cryptography peewee Flask gensim numpy flask-cors
 
 WORKDIR /home
 
