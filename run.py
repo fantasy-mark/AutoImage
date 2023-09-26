@@ -4,8 +4,8 @@ DOCKER_REPO = r"registry.cn-shenzhen.aliyuncs.com"
 
 print()
 print('Usage: python run.py taskID')
-print(f"\t1. 通过Dockerfile构建镜像")
-print(f"\t2. 从仓库下载镜像")
+print(f"   1. 通过Dockerfile构建镜像")
+print(f"   2. 从仓库下载镜像")
 if len(sys.argv) > 1:
     option = sys.argv[1]
 else:
