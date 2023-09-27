@@ -9,9 +9,16 @@
 ### 使用
 
 * 备份旧的Dockfile
-
 * 创建 Dockerfile 首行格式为 `# image_name`
 * push
+
+```shell
+# 自动构建
+python run.py 1
+# 拉取镜像
+python run.py 2
+```
+
 * CI 自动构建结束后，pull 镜像
 
 ```shell

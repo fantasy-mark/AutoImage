@@ -1,7 +1,7 @@
-# ai_sqa_serve
+# ai_annota
 FROM python:3.9.0
 
-RUN pip install cryptography peewee Flask gensim numpy flask-cors
+RUN pip install click cryptography peewee Flask numpy pandas flask-cors tqdm torch transformers tqdm cron
 
 WORKDIR /home
 
