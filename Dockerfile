@@ -5,6 +5,7 @@ RUN mkdir /app
  
 COPY main.py /app
 COPY uwsgi.ini /app
+COPY requirements.txt /app
  
 WORKDIR /app
  
