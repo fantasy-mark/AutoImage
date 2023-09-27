@@ -12,7 +12,7 @@ else:
     option = input("输入需要执行的任务(回车确认):")
 print()
 
-with open('Dockerfile', 'r') as fp:
+with open('Dockerfile', 'r', encoding='utf-8', errors='ignore') as fp:
     image_name = fp.readline().strip().split()[-1]
 
 if "1" == option:
