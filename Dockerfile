@@ -1,7 +1,9 @@
 # ai_annota
-FROM python:3.9.0
+FROM ubuntu:22.04
 
-RUN pip install click cryptography peewee Flask numpy pandas flask-cors tqdm torch transformers tqdm cron
+RUN apt-get update && apt-get install cron -y && apt-get install python3 python3-pip -y && 
+
+RUN pip install click cryptography peewee Flask numpy pandas flask-cors tqdm torch transformers tqdm
 
 WORKDIR /home
 
