@@ -17,7 +17,7 @@ RUN apt-get install python3 python3-pip python3-venv nginx-core nginx uwsgi uwsg
 COPY nginx.conf /etc/nginx/nginx.conf
  
 # 添加证书文件
-COPY cert /etc/nginx/cert
+# COPY cert /etc/nginx/cert
  
 # nginx运行是需要有用户名的，默认安装好nginx后就有用户名www-data，如果想用其他用户可以使用如下代码增加组和用户
 # RUN  groupadd www-data && useradd -G www-data www-data
