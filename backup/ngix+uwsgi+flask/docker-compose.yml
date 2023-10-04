@@ -1,0 +1,10 @@
+version: "3.3"
+services:
+  ngix_sqa:
+    image: "10.175.94.63:9007/ngix_sqa"
+    ports:
+      - "9007:8000"
+    volumes:
+      - ./home:/app
+    environment:
+      FLASK_DEBUG: "false"
