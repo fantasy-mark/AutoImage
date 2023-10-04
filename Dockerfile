@@ -12,7 +12,7 @@ WORKDIR /app
 RUN apt-get update -yqq
 
 # uwsgi-plugin-python3 这是在uwsgi中运行python程序的一个插件
-RUN apt-get install python3 python3-pip nginx-core nginx tzdata -y
+RUN apt-get install python3 python3-pip nginx-core nginx -y
 RUN echo "Asia\nShanghai" | apt-get install -y tzdata
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
