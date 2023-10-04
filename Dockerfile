@@ -12,9 +12,10 @@ RUN apt-get update -yqq
 # uwsgi-plugin-python3 这是在uwsgi中运行python程序的一个插件
 RUN apt-get install python3 python3-pip python3-venv nginx-core nginx -y
 
-# 时区设置
-RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-&& echo 'Asia/Shanghai' >/etc/timezone
+RUN apk --no-cache add tzdata
+RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+RUN echo "Asia/Shanghai" >  /etc/timezone
+RUN apk del tzdata
  
 # 将nginx的配置文件拷贝到/etc/nginx下
 COPY nginx.conf /etc/nginx/nginx.conf
