@@ -6,7 +6,9 @@ RUN mkdir /app
 COPY main.py /app
 COPY uwsgi.ini /app
 COPY requirements.txt /app
- 
+
+WORKDIR /app
+
 RUN apt-get update -yqq
  
 # uwsgi-plugin-python3 这是在uwsgi中运行python程序的一个插件
@@ -35,9 +37,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN python3 -m pip install --upgrade pip
  
 # 安装运行python所需要的包
-RUN pip3 install -r requirements.txt
-
-WORKDIR /app
+RUN pip install -r requirements.txt
 
 EXPOSE 5000
 
