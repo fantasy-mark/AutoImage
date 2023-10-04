@@ -9,8 +9,6 @@ RUN apt-get update -yqq
 
 RUN apt-get install python3 python3-pip nginx-core nginx -y
 
-COPY nginx.conf /etc/nginx/conf.d/
-
 # 设置时区
 RUN DEBIAN_FRONTEND="noninteractive" apt -y install tzdata
 ENV TZ=Asia/Shanghai
@@ -25,6 +23,9 @@ RUN python3 -m pip install --upgrade pip
 # 安装运行python所需要的包
 #RUN pip install -r requirements.txt
 RUN pip install click cryptography peewee Flask gensim numpy flask-cors xlrd xlwt tqdm werkzeug gunicorn
+
+COPY nginx.conf /etc/nginx/conf.d/
+RUN nginx -c /etc/nginx/conf.d/nginx.conf
 
 EXPOSE 8000
 
