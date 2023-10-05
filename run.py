@@ -1,4 +1,4 @@
-import subprocess, sys
+﻿import subprocess, sys
 
 DOCKER_REPO = r"registry.cn-shenzhen.aliyuncs.com"
 
@@ -20,10 +20,13 @@ if "1" == option:
               f'git commit -m "Build image {image_name} at https://github.com/fantasy-mark/AutoImage/actions" && ' \
               f'git push -u origin main'
 elif "2" == option:
+    if len(sys.argv) > 2:
+        image_name = sys.argv[2]
     command = f'python docker_pull.py {DOCKER_REPO}/auto_image/{image_name}'
 else:
     command = 'echo "Invalid command."'
 
+print(command)
 # 执行外部命令
 pipe = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 

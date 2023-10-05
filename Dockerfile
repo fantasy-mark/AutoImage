@@ -1,26 +1,10 @@
-﻿# ai_sqa_server
-FROM ubuntu:22.04
+# jupyter_notebook
+FROM python:3.9.0
 
-MAINTAINER Mark Huang <hacker.do@163.com>
+RUN pip install jupyterlab
 
-WORKDIR /app
+WORKDIR /jupyter
 
-RUN apt-get update -yqq
+EXPOSE 11001
 
-RUN apt-get install python3 python3-pip cron -y
-
-# 设置时区
-RUN DEBIAN_FRONTEND="noninteractive" apt -y install tzdata
-ENV TZ=Asia/Shanghai
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-
-# 对pip进行升级
-RUN python3 -m pip install --upgrade pip
-RUN pip install click pandas torch transformers peewee
-
-COPY daily-cron /etc/cron.d/daily-cron
-RUN chmod 0644 /etc/cron.d/daily-cron
-RUN crontab /etc/cron.d/daily-cron
-RUN touch /var/log/cron.log
-
-CMD service cron start && tail -f /var/log/cron.log
+CMD ["bash", "-c", "jupyter lab --notebook-dir=/jupyter --ip 0.0.0.0 --port 11001 --no-browser --allow-root"]
