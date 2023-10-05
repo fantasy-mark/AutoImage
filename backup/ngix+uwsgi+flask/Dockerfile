@@ -2,11 +2,6 @@
 FROM ubuntu:22.04
 
 MAINTAINER Mark Huang <hacker.do@163.com>
- 
-RUN mkdir /app
- 
-COPY main.py /app
-COPY run.sh /app
 
 WORKDIR /app
 
@@ -24,9 +19,13 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
  
 # 对pip进行升级
 RUN python3 -m pip install --upgrade pip
- 
+
 # 安装运行python所需要的包
-RUN pip install -r requirements.txt
+#RUN pip install -r requirements.txt
+RUN pip install click cryptography peewee Flask gensim numpy flask-cors xlrd xlwt tqdm werkzeug gunicorn
+
+COPY nginx.conf /etc/nginx/conf.d/
+RUN nginx -c /etc/nginx/conf.d/nginx.conf
 
 EXPOSE 8000
 
