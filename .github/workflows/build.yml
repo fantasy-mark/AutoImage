@@ -11,10 +11,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Auto Build Docker image
-      run: |
-        docker version
-        if [ -e "Dockerfile" ]; then
-            sh Script/build_docker_file.sh
-        elif [ -e "docker-compose.yml" ]; then
-            sh Script/build_docker_compose.sh
-        fi
+    - uses: isbang/compose-action@v1.5.1
+      with:
+        compose-file: "docker-compose.yml"
