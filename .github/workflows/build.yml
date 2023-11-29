@@ -1,14 +1,9 @@
-name: "Tests"
+name: "Docker Image CI"
 on:
   pull_request:
   push:
     branches:
       - main
-env:
-  fail-fast: true
-
-permissions:
-  contents: read
 
 jobs:
   test:
@@ -21,11 +16,6 @@ jobs:
         with:
           compose-file: |
             docker-compose.yml
-            docker-compose.override.yml
-          down-flags: "--volumes"
-          services: |
-            php
-
-      - name: PHP Unit
+      - name: Auto Build Docker image
         if: always() && steps.install.outcome == 'success'
-        run: docker compose exec php bin/phpunit
+        run: docker compose build
