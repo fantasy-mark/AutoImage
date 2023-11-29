@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Auto Build Docker image
-      - run: |
+      run: |
         docker version
         if [ -e "Dockerfile" ]; then
             sh Script/build_docker_file.sh
