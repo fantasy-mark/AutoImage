@@ -1,17 +1,33 @@
-name: Docker Image CI
-
+name: "Tests"
 on:
+  pull_request:
   push:
-    branches: [ main ]
+    branches:
+      - master
+env:
+  fail-fast: true
+
+permissions:
+  contents: read
 
 jobs:
-  build:
-    name: "Exec CI Jobs"
+  test:
+    name: "Testing"
     runs-on: ubuntu-latest
+    continue-on-error: false
     steps:
       - uses: actions/checkout@v3
-      - uses: isbang/compose-action@v1.5.1
+      - uses: isbang/compose-action@v1.4.1
         with:
-          compose-file: docker-compose.yml
-      - name: Auto Build Docker image
-      run: docker compose build
+          compose-file: |
+            docker-compose.yml
+            docker-compose.override.yml
+          down-flags: "--volumes"
+          services: |
+            php
+          env:
+            TEST: 1
+
+      - name: PHP Unit
+        if: always() && steps.install.outcome == 'success'
+        run: docker compose exec php bin/phpunit
