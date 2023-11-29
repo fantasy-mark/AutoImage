@@ -25,8 +25,6 @@ jobs:
           down-flags: "--volumes"
           services: |
             php
-          env:
-            CUSTOM_VARIABLE: "test"
 
       - name: PHP Unit
         if: always() && steps.install.outcome == 'success'
