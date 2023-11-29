@@ -19,5 +19,5 @@ jobs:
       - name: Auto Build Docker image
         if: always() && steps.install.outcome == 'success'
         run: |
-          docker compose build
+          docker version
           docker image ls
