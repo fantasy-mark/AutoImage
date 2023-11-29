@@ -5,8 +5,8 @@ on:
     branches: [ main ]
 
 jobs:
-
   build:
+    name: "Exec CI Jobs"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
