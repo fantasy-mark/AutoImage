@@ -17,7 +17,7 @@ jobs:
     continue-on-error: false
     steps:
       - uses: actions/checkout@v3
-      - uses: isbang/compose-action@v1.4.1
+      - uses: isbang/compose-action@v1.5.1
         with:
           compose-file: |
             docker-compose.yml
@@ -26,7 +26,7 @@ jobs:
           services: |
             php
           env:
-            TEST: 1
+            CUSTOM_VARIABLE: "test"
 
       - name: PHP Unit
         if: always() && steps.install.outcome == 'success'
