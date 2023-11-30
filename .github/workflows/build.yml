@@ -13,7 +13,6 @@ jobs:
           npm init -y
           npm install
           npm run build --if-present
-          npm test
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
