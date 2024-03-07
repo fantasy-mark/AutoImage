@@ -1,4 +1,5 @@
 import subprocess
+import webbrowser
 
 import streamlit as st
 from utils import json
@@ -15,10 +16,12 @@ user_name = col2.text_input(label='##### User', value=configs['user'])
 image_name = col3.text_input(label='##### Image', value=configs['image'])
 version = col4.text_input(label='##### Version', value=configs['version'])
 
-uploaded_file = st.file_uploader("##### 拖拽Dockerfile到这里")  # 指定可上传的文件类型
+uploaded_file = st.file_uploader("##### 替换默认Dockerfile")
 
 if uploaded_file is not None:
-    file_contents = uploaded_file.read().decode('utf-8')  # 假设文件是文本文件
+    file_contents = uploaded_file.read().decode('utf-8')
+    with open("Dockerfile", 'w', encoding='utf-8') as file:
+        file.write(file_contents)
     st.code(file_contents, language='docker')
 
 
@@ -45,10 +48,11 @@ def exec_task():
               f'git commit -m "Build image {image_name} at https://github.com/fantasy-mark/AutoImage/actions" && ' \
               f'git push -u origin main'
     exec_cmd(command)
+    webbrowser.open("https://github.com/fantasy-mark/AutoImage/actions")
 
 
 if image_name:
-    st.button('Build', on_click=exec_task())
+    st.button('Build', on_click=exec_task)
 else:
     st.button('Build', disabled=True)
 
