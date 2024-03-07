@@ -1,6 +1,6 @@
 {
     "repo": "registry.cn-shenzhen.aliyuncs.com",
-    "user": "auto_image",
+    "namespace": "auto_image",
     "image": "cc11",
     "version": "v2"
 }

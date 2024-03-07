@@ -15,15 +15,15 @@ jobs:
         docker version
          
         repo=$(jq -r '.repo' config.json)
-        user=$(jq -r '.user' config.json)
+        namespace=$(jq -r '.namespace' config.json)
         image=$(jq -r '.image' config.json)
         version=$(jq -r '.version' config.json)
         
         # 使用Dockerfile构建镜像,推送镜像到镜像仓库 - 对应 https://cr.console.aliyun.com/cn-shenzhen/instance/repositories
         docker build -f Dockerfile -t $image:${version} .
-        docker tag $image:${version} $repo/auto_image/$image:${version} 
+        docker tag $image:${version} $repo/namespace/$image:${version} 
         docker login --username=${{ secrets.DOCKER_USERNAME }} --password=${{ secrets.DOCKER_PASSWORD }} $repo
-        docker push $repo/auto_image/$image:${version}
+        docker push $repo/namespace/$image:${version}
         if [ $? -eq 0 ]; then
             echo "docker push Success"
         else 

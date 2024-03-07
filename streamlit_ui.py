@@ -12,7 +12,7 @@ configs = json.read()
 st.write('### 构建image')
 col1, col2, col3, col4 = st.columns(4)
 repo_name = col1.text_input(label='##### Repo', value=configs['repo'])
-user_name = col2.text_input(label='##### User', value=configs['user'])
+namespace = col2.text_input(label='##### Namespace', value=configs['namespace'])
 image_name = col3.text_input(label='##### Image', value=configs['image'])
 version = col4.text_input(label='##### Version', value=configs['version'])
 
@@ -38,7 +38,7 @@ def exec_task():
     global configs
     configs = {
         "repo": repo_name,
-        "user": user_name,
+        "namespace": namespace,
         "image": image_name,
         "version": version
     }
@@ -60,7 +60,7 @@ st.divider()
 
 
 def download_image():
-    command = f'python docker_pull.py {repo_name}/{user_name}/{image_name}'
+    command = f'python docker_pull.py {repo_name}/{namespace}/{image_name}'
     exec_cmd(command)
 
 
