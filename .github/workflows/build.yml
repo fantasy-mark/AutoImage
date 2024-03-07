@@ -1,27 +1,36 @@
-name: Node CI
+name: Docker Image CI
 
-on: [push]
+on:
+  push:
+    branches: [ main ]
 
 jobs:
-  build_and_test:
+
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: npm install, build, and test
-        run: |
-          npm init -y
-          npm install
-          npm run build --if-present
-      - name: Archive production artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: dist-without-markdown
-          path: |
-            dist
-            !dist/**/*.md
-      - name: Archive code coverage results
-        uses: actions/upload-artifact@v3
-        with:
-          name: code-coverage-report
-          path: output/test/code-coverage.html
+    - uses: actions/checkout@v2
+    - name: Auto Build Docker image
+      run: | 
+        docker version
+         
+        # 使用正则表达式提取首行注释符后单词作为镜像名
+        first_line=$(head -n 1 Dockerfile)
+        pattern="# ([^ ]+)"
+        if [[ $first_line =~ $pattern ]]; then
+            image_name=${BASH_REMATCH[1]}
+        else
+            image_name="undefine_image_name"
+        fi
+        
+        # 使用Dockerfile构建镜像,推送镜像到镜像仓库 - 对应 https://cr.console.aliyun.com/cn-shenzhen/instance/repositories
+        version="latest"
+        docker build -f Dockerfile -t $image_name:${version} .
+        docker tag $image_name:${version} registry.cn-shenzhen.aliyuncs.com/auto_image/$image_name:${version} 
+        docker login --username=${{ secrets.DOCKER_USERNAME }} --password=${{ secrets.DOCKER_PASSWORD }} registry.cn-shenzhen.aliyuncs.com
+        docker push registry.cn-shenzhen.aliyuncs.com/auto_image/$image_name:${version}
+        if [ $? -eq 0 ]; then
+            echo "docker push Success"
+        else 
+            echo "docker push Failed"
+        fi
