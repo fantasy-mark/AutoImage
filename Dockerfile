@@ -1,6 +1,1 @@
-# cofa_ai_serve
-FROM python:3.9.0
-WORKDIR /home
-EXPOSE 5000
-
-CMD ["sh", "/home/run.sh"]
+# 使用官方 Python 运行时作为父镜像  FROM python:3.8    # 设置工作目录为 /app  WORKDIR /app    # 对外暴露的端口号  EXPOSE 8000    # 定义环境变量  ENV NAME World    # 当容器启动时运行 python app.py  CMD ["python", "app.py"]
