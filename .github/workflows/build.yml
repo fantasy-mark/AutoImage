@@ -21,9 +21,8 @@ jobs:
         
         # 使用Dockerfile构建镜像,推送镜像到镜像仓库 - 对应 https://cr.console.aliyun.com/cn-shenzhen/instance/repositories
         docker build -f Dockerfile -t $image .
-        docker tag $image_name:${version} $repo/$user/$image
         docker login --username=${{ secrets.DOCKER_USERNAME }} --password=${{ secrets.DOCKER_PASSWORD }} $repo
-        docker push $repo/$user/$image:${version}
+        docker push $repo/$user/$image
         if [ $? -eq 0 ]; then
             echo "docker push Success"
         else 
