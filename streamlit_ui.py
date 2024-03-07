@@ -66,7 +66,7 @@ def download_image():
 
 st.write('### 下载image')
 if image_name:
-    st.button('Download', on_click=download_image())
+    st.button('Download', on_click=download_image)
 else:
     st.button('Download', disabled=True)
 
