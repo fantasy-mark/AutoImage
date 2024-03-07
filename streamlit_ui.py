@@ -60,7 +60,7 @@ st.divider()
 
 
 def download_image():
-    command = f'python docker_pull.py {repo_name}/{namespace}/{image_name}'
+    command = f'python docker_pull.py {repo_name}/{namespace}/{image_name}:{version}'
     exec_cmd(command)
 
 
