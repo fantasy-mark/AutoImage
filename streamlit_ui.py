@@ -1,13 +1,11 @@
+import os.path
 import subprocess
 import webbrowser
 
 import streamlit as st
-from utils import json
+from utils import xjson
 
-# pip install streamlit
-# streamlit run .\self\streamlit_train.py
-
-configs = json.read()
+configs = xjson.read()
 
 st.write('### 构建image')
 col1, col2, col3, col4 = st.columns(4)
@@ -23,6 +21,11 @@ if uploaded_file is not None:
     with open("Dockerfile", 'w', encoding='utf-8') as file:
         file.write(file_contents)
     st.code(file_contents, language='docker')
+else:
+    if os.path.exists('Dockerfile'):
+        with open("Dockerfile", 'r', encoding='utf-8') as file:
+            file_contents = file.read()
+        st.code(file_contents, language='docker')
 
 
 def exec_cmd(command):
@@ -42,7 +45,7 @@ def exec_task():
         "image": image_name,
         "version": version
     }
-    json.update(configs)
+    xjson.update(configs)
 
     command = f'git add . && ' \
               f'git commit -m "Build image {image_name} at https://github.com/fantasy-mark/AutoImage/actions" && ' \
@@ -60,7 +63,7 @@ st.divider()
 
 
 def download_image():
-    command = f'python docker_pull.py {repo_name}/{namespace}/{image_name}:{version}'
+    command = f'python utils/docker_pull.py {repo_name}/{namespace}/{image_name}:{version}'
     exec_cmd(command)
 
 
@@ -69,7 +72,3 @@ if image_name:
     st.button('Download', on_click=download_image)
 else:
     st.button('Download', disabled=True)
-
-
-
-
