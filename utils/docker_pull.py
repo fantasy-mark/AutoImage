@@ -1,12 +1,12 @@
-import os
-import sys
 import gzip
-from io import BytesIO
-import json
 import hashlib
+import json
+import os
 import shutil
-import requests
+import sys
 import tarfile
+
+import requests
 import urllib3
 
 urllib3.disable_warnings()
@@ -204,9 +204,9 @@ file.write(json.dumps(content))
 file.close()
 
 # Create image tar and clean tmp folder
-docker_tar = repo.replace('/', '_') + '_' + img + '.tar'
 sys.stdout.write("Creating archive...")
 sys.stdout.flush()
+docker_tar = repo.replace('/', '_') + '_' + img + '.tar'
 tar = tarfile.open(docker_tar, "w")
 tar.add(imgdir, arcname=os.path.sep)
 tar.close()
