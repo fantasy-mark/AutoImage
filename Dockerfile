@@ -6,8 +6,9 @@ RUN apt-get update && \
         python3 \  
         python3-pip \  
         subversion \  
-        git  
-  
+        git
+	pip install click chardet tqdm Flask peewee Flask_Cors pandas
+
 WORKDIR /work  
   
 CMD ["sh", "run_scc.sh"]

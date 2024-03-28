@@ -1,6 +1,6 @@
 {
     "repo": "registry.cn-shenzhen.aliyuncs.com",
     "namespace": "auto_image",
-    "image": "scc_git",
-    "version": "v3"
+    "image": "scc_2",
+    "version": "2"
 }
