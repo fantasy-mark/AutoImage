@@ -18,24 +18,28 @@ if len(sys.argv) != 2:
 # Look for the Docker image to download
 repo = 'library'
 tag = 'latest'
-imgparts = sys.argv[1].split('/')
+
+# eg. python utils/docker_pull.py {repo_name}/{namespace}/{image_name}:{version}
+parts = sys.argv[1].split('/')
 try:
-    img, tag = imgparts[-1].split('@')
+    img, tag = parts[-1].split('@')
 except ValueError:
     try:
-        img, tag = imgparts[-1].split(':')
+        img, tag = parts[-1].split(':')
     except ValueError:
-        img = imgparts[-1]
+        img = parts[-1]
+
 # Docker client doesn't seem to consider the first element as a potential registry unless there is a '.' or ':'
-if len(imgparts) > 1 and ('.' in imgparts[0] or ':' in imgparts[0]):
-    registry = imgparts[0]
-    repo = '/'.join(imgparts[1:-1])
+if len(parts) > 1 and ('.' in parts[0] or ':' in parts[0]):
+    registry = parts[0]
+    repo = '/'.join(parts[1:-1])
 else:
     registry = 'registry-1.docker.io'
-    if len(imgparts[:-1]) != 0:
-        repo = '/'.join(imgparts[:-1])
+    if len(parts[:-1]) != 0:
+        repo = '/'.join(parts[:-1])
     else:
         repo = 'library'
+
 repository = '{}/{}'.format(repo, img)
 
 # Get Docker authentication endpoint when it is required
@@ -76,13 +80,13 @@ def progress_bar(ublob, nb_traits):
 # Fetch manifest v2 and get image layer digests
 auth_head = get_auth_head('application/vnd.docker.distribution.manifest.v2+json')
 resp = requests.get('https://{}/v2/{}/manifests/{}'.format(registry, repository, tag), headers=auth_head, verify=False)
-if (resp.status_code != 200):
+if resp.status_code != 200:
     print('[-] Cannot fetch manifest for {} [HTTP {}]'.format(repository, resp.status_code))
     print(resp.content)
     auth_head = get_auth_head('application/vnd.docker.distribution.manifest.list.v2+json')
     resp = requests.get('https://{}/v2/{}/manifests/{}'.format(registry, repository, tag), headers=auth_head,
                         verify=False)
-    if (resp.status_code == 200):
+    if resp.status_code == 200:
         print('[+] Manifests found for this tag (use the @digest format to pull the corresponding image):')
         manifests = resp.json()['manifests']
         for manifest in manifests:
@@ -109,8 +113,8 @@ content = [{
     'RepoTags': [],
     'Layers': []
 }]
-if len(imgparts[:-1]) != 0:
-    content[0]['RepoTags'].append('/'.join(imgparts[:-1]) + '/' + img + ':' + tag)
+if len(parts[:-1]) != 0:
+    content[0]['RepoTags'].append('/'.join(parts[:-1]) + '/' + img + ':' + tag)
 else:
     content[0]['RepoTags'].append(img + ':' + tag)
 
@@ -195,8 +199,8 @@ file = open(imgdir + '/manifest.json', 'w')
 file.write(json.dumps(content))
 file.close()
 
-if len(imgparts[:-1]) != 0:
-    content = {'/'.join(imgparts[:-1]) + '/' + img: {tag: fake_layerid}}
+if len(parts[:-1]) != 0:
+    content = {'/'.join(parts[:-1]) + '/' + img: {tag: fake_layerid}}
 else:  # when pulling only an img (without repo and registry)
     content = {img: {tag: fake_layerid}}
 file = open(imgdir + '/repositories', 'w')
