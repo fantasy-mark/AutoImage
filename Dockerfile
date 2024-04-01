@@ -3,7 +3,7 @@
 RUN apt-get update && \  
     apt-get install -y \  
         cron \  
-        python3 \  
+        python3.11 \  
         python3-pip \  
         subversion \  
         git
