@@ -7,8 +7,5 @@ WORKDIR /app
 # 复制当前目录下的文件到工作目录
 COPY . /app
  
-# 安装依赖（如果有必要）
-RUN pip install -r requirements.txt
- 
 # 运行bash命令行界面
 CMD ["bash"]
