@@ -1,11 +1,12 @@
 ﻿# 使用官方的Python 3.9镜像作为基础镜像
-FROM python:3.9
- 
+FROM python:3.10
+
 # 设置工作目录
 WORKDIR /app
+
+RUN pip install Flask
+
  
-# 复制当前目录下的文件到工作目录
-COPY . /app
- 
-# 运行bash命令行界面
-CMD ["bash"]
+WORKDIR /work  
+  
+CMD ["sh", "run_scc.sh"]
