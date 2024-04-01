@@ -7,7 +7,7 @@ RUN apt-get update && \
         python3-pip \  
         subversion \  
         git
-RUN pip3 install click chardet tqdm Flask peewee Flask_Cors pandas
+RUN pip3 install click chardet tqdm Flask peewee flask-cors pandas
 
 WORKDIR /work  
   
