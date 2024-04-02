@@ -2,5 +2,5 @@
     "repo": "registry.cn-shenzhen.aliyuncs.com",
     "namespace": "auto_image",
     "image": "flask",
-    "version": "2"
+    "version": "4"
 }

@@ -12,5 +12,4 @@ COPY app.py gunicorn_config.py /app
 # 对外暴露端口
 EXPOSE 5000
  
-# 运行Gunicorn服务器 gunicorn --config gunicorn_config.py app:app
-CMD ["gunicorn", "--config", "gunicorn_config.py", "app:app"]
+CMD ["sh", "run.sh"]
