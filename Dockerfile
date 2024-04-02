@@ -12,7 +12,7 @@ ENV FLASK_RUN_HOST=0.0.0.0
 COPY app.py /app
  
 # 对外暴露端口
-EXPOSE 80
+EXPOSE 5000
  
 # 运行Gunicorn服务器
-CMD ["gunicorn", "-b", "$FLASK_RUN_HOST:80", "$FLASK_APP"]
+CMD ["gunicorn", "-b", "$FLASK_RUN_HOST:5000", "$FLASK_APP"]
