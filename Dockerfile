@@ -1,12 +1,7 @@
-﻿# 使用官方的Python 3.9镜像作为基础镜像
-FROM python:3.10
+﻿FROM swr.cn-north-4.myhuaweicloud.com/infiniflow/ragflow-base:v1.0
+USER  root
 
-# 设置工作目录
-WORKDIR /app
-
-RUN pip install Flask
-
- 
+WORKDIR /app 
 WORKDIR /work  
   
-CMD ["sh", "run_scc.sh"]
+ENTRYPOINT ["run_scc.sh"]

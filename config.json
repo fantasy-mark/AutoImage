@@ -1,6 +1,6 @@
 {
     "repo": "registry.cn-shenzhen.aliyuncs.com",
     "namespace": "auto_image",
-    "image": "scc",
-    "version": "5"
+    "image": "ragflow",
+    "version": "1"
 }
