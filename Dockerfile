@@ -11,5 +11,7 @@ COPY app.py gunicorn_config.py /app
  
 # 对外暴露端口
 EXPOSE 5000
+
+WORKDIR /work
  
 CMD ["sh", "run.sh"]
