@@ -1,17 +1,14 @@
-﻿# 基于Python官方镜像
-FROM python:3.11
- 
-# 安装Flask和Gunicorn
-RUN pip install Flask Gunicorn
- 
-# 设置环境变量
- 
-# 复制当前目录下的app.py到镜像中的/app目录
-COPY app.py gunicorn_config.py /app
- 
-# 对外暴露端口
-EXPOSE 5000
+﻿FROM ubuntu:20.04  
+  
+RUN apt-get update && \  
+    apt-get install -y \  
+        cron \  
+        python3.9 \  
+        python3-pip \  
+        subversion \  
+        git
+RUN pip3 install click chardet tqdm Flask peewee flask-cors pandas
 
-WORKDIR /work
- 
-CMD ["sh", "run.sh"]
+WORKDIR /work  
+  
+CMD ["sh", "run_scc.sh"]
