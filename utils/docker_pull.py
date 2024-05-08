@@ -98,6 +98,8 @@ layers = resp.json()['layers']
 
 # Create tmp folder that will hold the image
 imgdir = 'tmp_{}_{}'.format(img, tag.replace(':', '@'))
+if os.path.exists(imgdir):
+    shutil.rmtree(imgdir)
 os.mkdir(imgdir)
 print('Creating image structure in: ' + imgdir)
 
@@ -124,6 +126,9 @@ empty_json = '{"created":"1970-01-01T00:00:00Z","container_config":{"Hostname":"
 
 # Build layer folders
 parentid = ''
+
+print(f'Total {len(layers)} layers')
+
 for layer in layers:
     ublob = layer['digest']
     # FIXME: Creating fake layer ID. Don't know how Docker generates it
@@ -153,9 +158,11 @@ for layer in layers:
     # Stream download and follow the progress
     bresp.raise_for_status()
     unit = int(bresp.headers['Content-Length']) / 50
+
+    print(f'This layer total {bresp.headers["Content-Length"]} B')
+
     acc = 0
     nb_traits = 0
-    progress_bar(ublob, nb_traits)
     with open(layerdir + '/layer_gzip.tar', "wb") as file:
         for chunk in bresp.iter_content(chunk_size=8192):
             if chunk:
