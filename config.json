@@ -1,6 +1,6 @@
 {
     "repo": "registry.cn-shenzhen.aliyuncs.com",
     "namespace": "auto_image",
-    "image": "flask",
-    "version": "4"
+    "image": "qdrant",
+    "version": "241101"
 }
