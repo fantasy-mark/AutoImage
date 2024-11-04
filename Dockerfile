@@ -1,2 +1,2 @@
-FROM --platform=linux/amd64 langfuse/langfuse:2
-
+FROM --platform=linux/amd64 postgres:latest
+
