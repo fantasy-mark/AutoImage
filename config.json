@@ -1,6 +1,6 @@
 {
     "repo": "registry.cn-shenzhen.aliyuncs.com",
     "namespace": "auto_image",
-    "image": "langfuse",
-    "version": "2"
+    "image": "postgres",
+    "version": "latest"
 }
