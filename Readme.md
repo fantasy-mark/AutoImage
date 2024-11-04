@@ -4,5 +4,5 @@
 
 ### 执行
 ```shell
-streamlit run streamlit_ui.py
+streamlit run main.py
 ```
