@@ -1,6 +1,6 @@
 {
     "repo": "registry.cn-shenzhen.aliyuncs.com",
     "namespace": "auto_image",
-    "image": "postgres",
-    "version": "latest"
+    "image": "ghcr.io/open-webui/open-webui",
+    "version": "main"
 }
