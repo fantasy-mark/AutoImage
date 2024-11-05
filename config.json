@@ -1,6 +1,6 @@
 {
     "repo": "registry.cn-shenzhen.aliyuncs.com",
     "namespace": "auto_image",
-    "image": "ghcr.io/open-webui/open-webui",
+    "image": "open-webui",
     "version": "main"
 }
