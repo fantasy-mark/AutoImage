@@ -1,6 +1,6 @@
 {
     "repo": "registry.cn-shenzhen.aliyuncs.com",
     "namespace": "auto_image",
-    "image": "open-webui",
-    "version": "ollama"
+    "image": "download",
+    "version": "2"
 }
