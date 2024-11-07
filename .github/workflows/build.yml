@@ -19,6 +19,7 @@ jobs:
         
         # 从Dockerfile的第一行注释中提取信息
         repo_namespace_image_version=$(parse_dockerfile)
+        echo "repo_namespace_image_version: $repo_namespace_image_version"
         
         # 使用awk分割字符串并赋值给变量
         repo=$(echo $repo_namespace_image_version | awk -F'/' '{print $1}')
