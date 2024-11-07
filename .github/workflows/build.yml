@@ -14,7 +14,7 @@ jobs:
         # 定义一个函数来解析Dockerfile的第一行注释
         parse_dockerfile() {
           local line=$(sed -n '1p' Dockerfile)
-          echo $line | awk '{print $2 $3 $4 $5}'
+          echo $line | awk '{ORS=" "; print $2, $3, $4, $5}'
         }
         
         # 从Dockerfile的第一行注释中提取信息
