@@ -22,10 +22,10 @@ jobs:
         echo "repo_namespace_image_version: $repo_namespace_image_version"
         
         # 使用awk分割字符串并赋值给变量
-        repo=$(echo $repo_namespace_image_version | awk -F'/' '{print $1}')
-        namespace=$(echo $repo_namespace_image_version | awk -F'/' '{print $2}')
-        image=$(echo $repo_namespace_image_version | awk -F'/' '{print $3}')
-        version=$(echo $repo_namespace_image_version | awk -F'/' '{print $4}')
+        repo=$(echo $repo_namespace_image_version | awk -F'/ ' '{print $1}')
+        namespace=$(echo $repo_namespace_image_version | awk -F'/ ' '{print $2}')
+        image=$(echo $repo_namespace_image_version | awk -F'/ ' '{print $3}')
+        version=$(echo $repo_namespace_image_version | awk -F'/ ' '{print $4}')
         
         # 打印变量
         echo "Repo: $repo"
