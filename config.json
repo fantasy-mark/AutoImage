@@ -2,5 +2,5 @@
     "repo": "registry.cn-shenzhen.aliyuncs.com",
     "namespace": "auto_image",
     "image": "nginx",
-    "version": "2"
+    "version": "3"
 }
