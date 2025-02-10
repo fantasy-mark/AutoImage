@@ -1,6 +1,6 @@
 {
     "repo": "registry.cn-shenzhen.aliyuncs.com",
     "namespace": "auto_image",
-    "image": "lmsysorg/sglang",
+    "image": "sglang",
     "version": "3"
 }
