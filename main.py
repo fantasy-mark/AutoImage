@@ -47,7 +47,7 @@ def exec_task():
     }
     xjson.update(configs)
 
-    command = f'git add . && ' \
+    command = f'git add . &&  ' \
               f'git commit -m "Build image {image_name} at https://github.com/fantasy-mark/AutoImage/actions" && ' \
               f'git push -u origin main'
     exec_cmd(command)
